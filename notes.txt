@@ -1,0 +1,17 @@
+Author: Alexis Tercero
+
+github: https://github.com/AlexisTercero55
+email: alexistercero55@gmail.com
+
+Refernce: "Three.js Essentials" Jos Dirksen
+ISBN: 978-1-78398-086-4
+
+why requestAnimationFrame()?
+
+With the requestAnimationFrame function, we tell
+the browser to determine when it thinks it is best to call the supplied function (the
+render function in this case). This way, we can offload the graphical rendering of the
+scene from the normal JavaScript thread; this provides a much smoother experience
+and better performance.
+
+p34

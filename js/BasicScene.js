@@ -8,6 +8,15 @@
 var renderer;
 var scene;
 var camera;
+var control;
+
+function addControlGui(controlObject) 
+{
+    var gui = new dat.GUI();
+    gui.add(controlObject, 'rotationSpeed', -0.01, 0.01);
+    gui.add(controlObject, 'opacity', 0.1, 1);
+    gui.addColor(controlObject, 'color');
+}
 
 function camView()
 {
@@ -40,12 +49,23 @@ function main()
 
     // draw the scene
     plane1();
-    let cube = cube1(); // set up the cube
+    var cube = cube1(); // set up the cube
     addVertices(cube); // add small spheres on each of the vertices of the cube
     // camera view
     camView();
     // set up the light
     spotLight1();
+
+    /**
+     * adding gui contros using dat.gui
+     */
+    control = new function() 
+    {
+        this.rotationSpeed = 0.005;
+        this.opacity = 0.6;
+        this.color = cube.material.color.getHex();
+    };
+    addControlGui(control);
 
     // add graphics to the web page (HTML)
     document.body.appendChild(renderer.domElement);

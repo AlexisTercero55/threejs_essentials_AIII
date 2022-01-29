@@ -5,6 +5,31 @@
  */
 
 /**
+ * Applies coloring to each individual face and updates the geometry so
+ * the materialIndex points to the correct face
+ *
+ * @param geometry the geometry to create facecolor for
+ * @return an array of materials
+ */
+function applyFaceColors(geometry) 
+{
+    var result = [];
+
+    var faceCount = 0;
+    geometry.faces.forEach(function(face) 
+    {
+            face.materialIndex = faceCount++;
+            result.push(new THREE.MeshBasicMaterial({
+                color: Math.random()*0xFFFFFF,
+                transparent:true, 
+                opacity:0.6
+            }));
+        });
+
+    return result;
+}
+
+/**
  * set up simple box mesh (geometry and material)
  * @returns {THREE.Mesh}
  */
@@ -12,11 +37,14 @@ function cube1()
 {
     var cubeGeometry = new THREE.BoxGeometry(6, 4, 6);
     var cubeMaterial = new THREE.MeshLambertMaterial({
-        color: "red", 
+        color: 0x00ff4a, 
         transparent:true, 
         opacity:0.6
     });
+    // var materialArray = applyFaceColors(cubeGeometry);
+    // var cubeMaterial = new THREE.MeshFaceMaterial(materialArray);
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+    cube.name='cube';
     // activate the shadows (emit shadows)
     cube.castShadow = true;
     scene.add(cube);

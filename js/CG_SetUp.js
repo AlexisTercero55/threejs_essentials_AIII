@@ -24,10 +24,13 @@ function CGenv()
 function render() 
 {
     // animation: rotate camera around the scene (xz circle)
-    var rotSpeed = 0.01;
+    var rotSpeed = control.rotationSpeed;//0.01;
     camera.position.x = camera.position.x * Math.cos(rotSpeed) + camera.position.z * Math.sin(rotSpeed);
     camera.position.z = camera.position.z * Math.cos(rotSpeed) - camera.position.x * Math.sin(rotSpeed);
     camera.lookAt(scene.position);
+
+    scene.getObjectByName('cube').material.opacity = control.opacity;
+    scene.getObjectByName('cube').material.color = new THREE.Color(control.color);
 
     // render using requestAnimationFame
     renderer.render(scene, camera);

@@ -9,15 +9,37 @@ var renderer;
 var scene;
 var camera;
 var control;
+var stats;
 
+/**
+ * Make gui contros using dat.gui
+ * @param {object} controlObject 
+ */
 function addControlGui(controlObject) 
 {
     var gui = new dat.GUI();
-    gui.add(controlObject, 'rotationSpeed', -0.01, 0.01);
+    let speed = 0.05;
+    gui.add(controlObject, 'rotationSpeed', -speed, speed);
     gui.add(controlObject, 'opacity', 0.1, 1);
     gui.addColor(controlObject, 'color');
 }
 
+/**
+ * Make statistic report of frame rate.
+ */
+function addStatsObject() 
+{
+    stats = new Stats();
+    stats.setMode(0);
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild( stats.domElement );
+}
+
+/**
+ * Set position and orientation of the camera.
+ */
 function camView()
 {
     // set up the camera position and view
@@ -27,6 +49,9 @@ function camView()
     camera.lookAt(scene.position);
 }
 
+/**
+ * Set spotlight on the scene.
+ */
 function spotLight1()
 {
     var spotLight = new THREE.SpotLight(0xffffff);
@@ -47,25 +72,26 @@ function main()
 {
     CGenv(); // set up the graphics environment
 
-    // draw the scene
+    // draw the scene ---------------------------------------
     plane1();
     var cube = cube1(); // set up the cube
-    addVertices(cube); // add small spheres on each of the vertices of the cube
+    addVertices(cube); // show the vertices
+    // ------------------------------------------------------
     // camera view
     camView();
     // set up the light
     spotLight1();
 
-    /**
-     * adding gui contros using dat.gui
-     */
+    // control constructor
     control = new function() 
     {
         this.rotationSpeed = 0.005;
         this.opacity = 0.6;
         this.color = cube.material.color.getHex();
     };
+    // adding gui contros using dat.gui
     addControlGui(control);
+    addStatsObject();// add statistic report of frame rate
 
     // add graphics to the web page (HTML)
     document.body.appendChild(renderer.domElement);

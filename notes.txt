@@ -14,4 +14,26 @@ render function in this case). This way, we can offload the graphical rendering 
 scene from the normal JavaScript thread; this provides a much smoother experience
 and better performance.
 
-p34
+HOW WORKS dat.gui?
+
+HOW WORKS stats.js?
+
+we need to configure what kind of statistics we want to show and where to
+show them. This is described in the following code:
+
+    function addStatsObject() {
+    stats = new Stats();
+    stats.setMode(0);  <----------------------------
+    stats.domElement.style.position = 'absolute';
+    stats.domElement.style.left = '0px';
+    stats.domElement.style.top = '0px';
+    document.body.appendChild( stats.domElement );
+    }
+
+Stats.js supports two modes: 
+
+    Mode 0, which we will use here, 
+    shows the frames per second (FPS). 
+    
+    Mode to 1, we will see the number of 
+    milliseconds needed to render the frame.

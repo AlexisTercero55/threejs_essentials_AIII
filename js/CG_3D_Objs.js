@@ -4,6 +4,18 @@
  * email: alexistercero55@gmail.com
  */
 
+
+function sphere1()
+{
+    // create a sphere
+    var sphereGeometry = new THREE.SphereGeometry(15, 30, 30);
+    var sphereMaterial = new THREE.MeshNormalMaterial();
+    var earthMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    earthMesh.name = 'earth';
+    scene.add(earthMesh);
+}
+ 
+
 /**
  * Applies coloring to each individual face and updates the geometry so
  * the materialIndex points to the correct face

@@ -6,6 +6,10 @@ email: alexistercero55@gmail.com
 Refernce: "Three.js Essentials" Jos Dirksen
 ISBN: 978-1-78398-086-4
 
+Conventions:
+
+    //# iusses notes
+
 why requestAnimationFrame()?
 
 With the requestAnimationFrame function, we tell
@@ -37,3 +41,21 @@ Stats.js supports two modes:
     
     Mode to 1, we will see the number of 
     milliseconds needed to render the frame.
+
+
+Sphere geometry constructor argumets:
+
+    THREE.SphereGeometry(15, 30, 30);
+
+    • The radius of the sphere
+    • The number of width segments
+    • The number of height segments
+
+THREE.MeshNormalMaterial. 
+    With this material, the color of a mesh isn't 
+    determined by lighting, but is determined by
+    its normal vector, or in other words, by the 
+    angle of the face. This is a good material
+    to use when you're testing the position of 
+    your camera, the way the geometry looks,
+    and whether the scene is initialized correctly.

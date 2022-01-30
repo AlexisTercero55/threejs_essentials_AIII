@@ -21,17 +21,51 @@ function CGenv()
     renderer.shadowMapEnabled = true;
 }
 
+/**
+ * Make gui contros using dat.gui
+ * @param {object} controlObject 
+ */
+ function addControlGui(controlObject) 
+ {
+    var gui = new dat.GUI();
+    let speed = 0.01;
+    gui.add(controlObject, 'rotationSpeed', -speed, speed);
+    //  gui.add(controlObject, 'opacity', 0.1, 1);
+    //  gui.addColor(controlObject, 'color');
+ }
+ 
+ /**
+  * Make statistic report of frame rate.
+  */
+ function addStatsObject() 
+ {
+     stats = new Stats();
+     stats.setMode(0);
+     stats.domElement.style.position = 'absolute';
+     stats.domElement.style.left = '0px';
+     stats.domElement.style.top = '0px';
+     document.body.appendChild( stats.domElement );
+ }
+
+ /**
+  * Update and render loop
+  */
 function render() 
 {
-    // animation: rotate camera around the scene (xz circle)
-    var rotSpeed = control.rotationSpeed;//by controls info
-    camera.position.x = camera.position.x * Math.cos(rotSpeed) + camera.position.z * Math.sin(rotSpeed);
-    camera.position.z = camera.position.z * Math.cos(rotSpeed) - camera.position.x * Math.sin(rotSpeed);
-    camera.lookAt(scene.position);
-
     // update scene by controls info
-    scene.getObjectByName('cube').material.opacity = control.opacity;
-    scene.getObjectByName('cube').material.color = new THREE.Color(control.color);
+    // ----- Scene1.js
+    // animation: rotate camera around the scene (xz circle)
+    // var rotSpeed = control.rotationSpeed;//by controls info
+    // camera.position.x = camera.position.x * Math.cos(rotSpeed) + camera.position.z * Math.sin(rotSpeed);
+    // camera.position.z = camera.position.z * Math.cos(rotSpeed) - camera.position.x * Math.sin(rotSpeed);
+    // camera.lookAt(scene.position);
+    // scene.getObjectByName('cube').material.opacity = control.opacity;
+    // scene.getObjectByName('cube').material.color = new THREE.Color(control.color);
+
+    // ----- Scene2.js
+    scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
+
+    cameraControl.update();// update camera contros
 
     stats.update();//update statistic report
 

@@ -4,7 +4,8 @@
 function Scene()
 {
     // drawings
-    sphere1();
+    earth();
+    //clouds();
     // camera view
     camView([35,36,33]);
 

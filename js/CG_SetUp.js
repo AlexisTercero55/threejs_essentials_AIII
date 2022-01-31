@@ -19,6 +19,14 @@ function CGenv()
     renderer.setSize(window.innerWidth, window.innerHeight);
     // enable shadows rendering
     renderer.shadowMapEnabled = true;
+
+    // add statistic report of frame rate
+    addStatsObject();
+    // add controls
+    cameraControl = new THREE.OrbitControls(camera);
+
+    // add graphics to the web page (HTML)
+    document.body.appendChild(renderer.domElement);
 }
 
 /**
@@ -30,7 +38,6 @@ function CGenv()
     var gui = new dat.GUI();
     let speed = 0.01;
     gui.add(controlObject, 'rotationSpeed', -speed, speed);
-    //  gui.add(controlObject, 'opacity', 0.1, 1);
     //  gui.addColor(controlObject, 'color');
  }
  
@@ -65,8 +72,8 @@ function render()
     // ----- Scene2.js
     scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
 
+    // ----------------------------------------------------------------------
     cameraControl.update();// update camera contros
-
     stats.update();//update statistic report
 
     // render using requestAnimationFame

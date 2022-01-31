@@ -18,20 +18,21 @@ render function in this case). This way, we can offload the graphical rendering 
 scene from the normal JavaScript thread; this provides a much smoother experience
 and better performance.
 
-HOW WORKS dat.gui?
+HOW WORKS dat.gui?  <----------------
 
 HOW WORKS stats.js?
 
 we need to configure what kind of statistics we want to show and where to
 show them. This is described in the following code:
 
-    function addStatsObject() {
-    stats = new Stats();
-    stats.setMode(0);  <----------------------------
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild( stats.domElement );
+    function addStatsObject() 
+    {
+        stats = new Stats();
+        stats.setMode(0);  <----------------------------
+        stats.domElement.style.position = 'absolute';
+        stats.domElement.style.left = '0px';
+        stats.domElement.style.top = '0px';
+        document.body.appendChild( stats.domElement );
     }
 
 Stats.js supports two modes: 
@@ -51,7 +52,7 @@ Sphere geometry constructor argumets:
     • The number of width segments
     • The number of height segments
 
-THREE.MeshNormalMaterial. 
+THREE.MeshNormalMaterial(). 
     With this material, the color of a mesh isn't 
     determined by lighting, but is determined by
     its normal vector, or in other words, by the 
@@ -59,3 +60,17 @@ THREE.MeshNormalMaterial.
     to use when you're testing the position of 
     your camera, the way the geometry looks,
     and whether the scene is initialized correctly.
+
+THREE.MeshBasicMaterial();
+    MeshBasicMaterial object,
+    a material that doesn't change 
+    the way it looks according to light sources.
+
+THREE.ImageUtils.loadTexture('images/earth.jpg');
+    Load an image and return a texture
+    that THREE can use.
+
+THREE.materialObject.map = THREE.ImageUtils.loadTexture('images/earth.jpg');
+    This is how we set the texture of the material.
+
+    materialObject -> THREE.MeshBasicMaterial

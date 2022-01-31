@@ -4,17 +4,37 @@
  * email: alexistercero55@gmail.com
  */
 
-
-function sphere1()
+/**
+ * 
+ * @param {number} r 
+ * @param {number} ws 
+ * @param {number} hs 
+ * @param {THREE.materialObject} material 
+ * @param {string} name 
+ */
+function sphere(r=1, ws=15, hs=15, material, name)
 {
     // create a sphere
-    var sphereGeometry = new THREE.SphereGeometry(15, 30, 30);
-    var sphereMaterial = new THREE.MeshNormalMaterial();
-    var earthMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
-    earthMesh.name = 'earth';
-    scene.add(earthMesh);
+    var sphereGeometry = new THREE.SphereGeometry(r, ws, hs);
+    //var sphereMaterial = new THREE.MeshNormalMaterial();
+    var sphereMesh = new THREE.Mesh(sphereGeometry, material);
+    sphereMesh.name = name;
+    scene.add(sphereMesh);
+}
+
+function earth()
+{
+    // create material texture from image
+    let texture = 'textures/earthmap4k.jpg';
+    let material = materialTexture(texture);
+    // create a sphere
+    sphere(15,60,60,material, 'earth');
 }
  
+function clouds()
+{
+
+}
 
 /**
  * Applies coloring to each individual face and updates the geometry so

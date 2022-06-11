@@ -4,11 +4,43 @@
  * email: alexistercero55@gmail.com
  * 
  * @description 3D Objects:
- *  Here you can find snippets of code that create 3D objects.
+ *  Here you can find snippets of code that create 3D objects from funtions.
+ * 
+ * @issues List of issues:
+ * - work with classes instead of functions.
+ * - Create a basic 3D object class.
+ * - Each 3D object must have {name, geometry, material, mesh}.
  */
 
 /**
- * 
+ * Clasa 3D Object
+ * @param {string} name
+ * @param {THREE.Geometry} geometry
+ * @param {THREE.Material} material
+ * @param {THREE.Mesh} mesh
+ * @constructor
+ * @property {string} name
+ * @property {THREE.Geometry} geometry
+ * @property {THREE.Material} material
+ * @property {THREE.Mesh} mesh
+ * @property {THREE.Object3D} object
+ */
+class Object3D 
+{
+    constructor(name, geometry, material, mesh) 
+    {
+        this.name = name;
+        this.geometry = geometry;
+        this.material = material;
+        this.mesh = mesh;
+        this.object = new THREE.Object3D();
+        this.object.add(this.mesh);
+    }
+}
+
+/**
+ * sphere function built a 3D sphere from THREE library
+ * and adds it to the scene
  * @param {number} r 
  * @param {number} ws 
  * @param {number} hs 
@@ -78,8 +110,14 @@ function cube1()
         transparent:true, 
         opacity:0.6
     });
+    
+    /** @type {THREE.Material}
+     * Next two line are used to add different colors to each face
+     * of any geometry.
+     */
     // var materialArray = applyFaceColors(cubeGeometry);
     // var cubeMaterial = new THREE.MeshFaceMaterial(materialArray);
+
     var cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
     cube.name='cube';
     // activate the shadows (emit shadows)

@@ -37,9 +37,10 @@ function CGenv()
  function addControlGui(controlObject) 
  {
     var gui = new dat.GUI();
-    let speed = 0.01;
+    let speed = 0.09;
     gui.add(controlObject, 'rotationSpeed', -speed, speed);
-    //  gui.addColor(controlObject, 'color');
+    gui.addColor(controlObject, 'color');
+    gui.add(controlObject, 'opacity', 0, 1);
  }
  
  /**

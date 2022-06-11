@@ -2,6 +2,9 @@
  * Alexis Tercero 
  * github: https://github.com/AlexisTercero55
  * email: alexistercero55@gmail.com
+ * 
+ * @description 3D Objects:
+ *  Here you can find snippets of code that create 3D objects.
  */
 
 /**
@@ -33,7 +36,7 @@ function earth()
  
 function clouds()
 {
-
+    //# inprogress
 }
 
 /**
@@ -51,12 +54,14 @@ function applyFaceColors(geometry)
     geometry.faces.forEach(function(face) 
     {
             face.materialIndex = faceCount++;
-            result.push(new THREE.MeshBasicMaterial({
-                color: Math.random()*0xFFFFFF,
-                transparent:true, 
-                opacity:0.6
-            }));
-        });
+            result.push(new THREE.MeshBasicMaterial
+                        ({
+                            color: Math.random()*0xFFFFFF,
+                            transparent:true, 
+                            opacity:0.6
+                        })
+            );
+    });
 
     return result;
 }
@@ -110,7 +115,8 @@ function addVertices(mesh)
     var vertexMaterial = new THREE.MeshPhongMaterial({color: 0x00ff00});
 
     // for each vertex, add a sphere
-    vertices.forEach(function (vertex) {
+    vertices.forEach(function (vertex) 
+    {
         var vertexSphere = new THREE.SphereGeometry(0.15);
         var vertexMesh = new THREE.Mesh(vertexSphere, vertexMaterial);
         vertexMesh.position = vertex;

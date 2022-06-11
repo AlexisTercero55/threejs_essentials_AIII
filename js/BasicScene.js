@@ -14,8 +14,13 @@ var cameraControl;
 
 
 /**
- * Set position and orientation of the camera.
+ * SET POSITION AND ORIENTATION OF THE CAMERA.
  * @param {array} xyz - [x,y,z]
+ * 
+ * //# implement CGenv class that contains:
+ * * the camera
+ * * renderer or 3D space
+ * * properties of the scene [background, lights, GUI, updaters, ...]
  */
 function camView(xyz = [20,20,20])
 {
@@ -25,6 +30,7 @@ function camView(xyz = [20,20,20])
     camera.position.z = xyz[2];
     camera.lookAt(scene.position);
 }
+//# functions above need to be move to another CG_desc.js file
 
 /**
  * ------------ Main function -----------------------
@@ -34,7 +40,8 @@ function main()
 {
     CGenv(); // set up the graphics environment
 
-    Scene(); // set up the scene
+    Scene(); // set up the scene to be rendered
+
     // adding gui contros using dat.gui
     // control takes the object with the info of the scene()
     addControlGui(control);//# update function acording Scene
@@ -45,8 +52,9 @@ function main()
 window.onload = main;
 
 /**
- * Function handles the resize event. This make sure the camera and the renderer
- * are updated at the correct moment.
+ * Function handles the resize event. 
+ * This make sure the CAMERA AND THE RENDERER
+ * are UPDATED at the CORRECT MOMENT.
  */
 function handleResize() 
 {

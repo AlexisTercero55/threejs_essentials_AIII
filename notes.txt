@@ -5,10 +5,11 @@ email: alexistercero55@gmail.com
 
 Refernce: "Three.js Essentials" Jos Dirksen
 ISBN: 978-1-78398-086-4
+Current page: 
 
 Conventions:
 
-    //# iusses notes
+    //# any iusses notes
 
 why requestAnimationFrame()?
 
@@ -22,20 +23,20 @@ HOW WORKS dat.gui?  <----------------
 
 HOW WORKS stats.js?
 
-we need to configure what kind of statistics we want to show and where to
+we need to configure what KIND OF STATISTICS WE WANT to show and where to
 show them. This is described in the following code:
 
     function addStatsObject() 
     {
         stats = new Stats();
-        stats.setMode(0);  <----------------------------
-        stats.domElement.style.position = 'absolute';
-        stats.domElement.style.left = '0px';
-        stats.domElement.style.top = '0px';
-        document.body.appendChild( stats.domElement );
-    }
-
-Stats.js supports two modes: 
+        stats.setMode(0);   // 0: fps, 1: ms                      
+        stats.domElement.style.position = 'absolute';   
+        stats.domElement.style.left = '0px';            
+        stats.domElement.style.top = '0px';             
+        document.body.appendChild( stats.domElement );  
+    }                                                   
+                                                        
+Stats.js supports two modes:
 
     Mode 0, which we will use here, 
     shows the frames per second (FPS). 

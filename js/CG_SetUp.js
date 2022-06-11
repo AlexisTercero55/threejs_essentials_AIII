@@ -8,11 +8,11 @@ function CGenv()
     // graphics space (math)
     scene = new THREE.Scene();
     // camera settings (perspective and view)
-    camera = new THREE.PerspectiveCamera(
-        45, 
-        window.innerWidth / window.innerHeight, 
-        0.1, 
-        1000);
+    camera = new THREE.PerspectiveCamera(   45, 
+                                            window.innerWidth / window.innerHeight, 
+                                            0.1, 
+                                            1000
+                                        );
     // render settings (drawing)
     renderer = new THREE.WebGLRenderer();
     renderer.setClearColor(0x000000, 1.0);
@@ -26,6 +26,7 @@ function CGenv()
     cameraControl = new THREE.OrbitControls(camera);
 
     // add graphics to the web page (HTML)
+    //# renderer.domElement should be added to any HTMl container like <div>
     document.body.appendChild(renderer.domElement);
 }
 
@@ -61,23 +62,16 @@ function render()
 {
     // update scene by controls info
     // ----- Scene1.js
-    // animation: rotate camera around the scene (xz circle)
-    // var rotSpeed = control.rotationSpeed;//by controls info
-    // camera.position.x = camera.position.x * Math.cos(rotSpeed) + camera.position.z * Math.sin(rotSpeed);
-    // camera.position.z = camera.position.z * Math.cos(rotSpeed) - camera.position.x * Math.sin(rotSpeed);
-    // camera.lookAt(scene.position);
-    // scene.getObjectByName('cube').material.opacity = control.opacity;
-    // scene.getObjectByName('cube').material.color = new THREE.Color(control.color);
-
+    renderLoop();
     // ----- Scene2.js
-    scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
+    // scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
 
     // ----------------------------------------------------------------------
     cameraControl.update();// update camera contros
     stats.update();//update statistic report
 
     // render using requestAnimationFame
-    renderer.render(scene, camera);
+    renderer.render(scene, camera); // renderer is a global variable
     // set up a render loop.
     requestAnimationFrame(render);
 }

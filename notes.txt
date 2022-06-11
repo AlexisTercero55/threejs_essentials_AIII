@@ -19,7 +19,7 @@ render function in this case). This way, we can offload the graphical rendering 
 scene from the normal JavaScript thread; this provides a much smoother experience
 and better performance.
 
-HOW WORKS dat.gui?  <----------------
+HOW WORKS dat.gui?  <----------------//#
 
 HOW WORKS stats.js?
 

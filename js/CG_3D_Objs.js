@@ -130,8 +130,11 @@ function plane1()
 {
     var planeGeometry = new THREE.PlaneGeometry(20, 20);
     var planeMaterial = new THREE.MeshLambertMaterial({
-    color: 0xcccccc
+    color: 0xaf5300
     });
+
+    // var material = new THREE.MeshNormalMaterial(planeGeometry);
+
     var plane = new THREE.Mesh(planeGeometry, planeMaterial);
     // activate the shadows (recieve shadows)
     plane.receiveShadow = true;

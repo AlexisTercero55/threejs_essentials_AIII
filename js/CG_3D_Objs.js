@@ -78,7 +78,7 @@ function sphere(r=1, ws=15, hs=15, material, name)
 function earth()
 {
     // create material texture from image
-    let texture = 'textures/earthmap4k.jpg';
+    let texture = '/textures/earthmap4k.jpg';
     let material = materialTexture(texture);
     // create a sphere
     sphere(15,60,60,material, 'earth');
@@ -87,7 +87,7 @@ function earth()
 function clouds()
 {
     // create material texture from image
-    var cloudTexture = "../textures/planets/fair_clouds_4k.jpg";
+    var cloudTexture = "/textures/fair_clouds_4k.png";
     var cloudMaterial = materialTexture(cloudTexture,true);
     // create a sphere
     sphere(15*1.01,60,60,cloudMaterial, 'clouds');

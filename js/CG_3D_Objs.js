@@ -87,7 +87,7 @@ function earth()
 function clouds()
 {
     // create material texture from image
-    var cloudTexture = "../textures/planets/fair_clouds_4k.png";
+    var cloudTexture = "../textures/planets/fair_clouds_4k.jpg";
     var cloudMaterial = materialTexture(cloudTexture,true);
     // create a sphere
     sphere(15*1.01,60,60,cloudMaterial, 'clouds');

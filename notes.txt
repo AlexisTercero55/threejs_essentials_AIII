@@ -109,4 +109,29 @@ CHAPTER 2:
     renderer. There is, however, also a different approach through which we can
     create various render or effect steps and combine these together. We'll show
     how you can configure and use this alternative rendering approach.
+
+
+USE IMAGES AS TEXTURE MATERIAL IN THREE.JS (BASIC PROCESS)
+    PP: 46
+
+    This is described in the following code:
+
+        function createEarthMaterial() 
+        {
+            // 4096 is the MAXIMUM WIDTH FOR MAPS
+            var earthTexture = THREE.ImageUtils.loadTexture(
+            "../assets/textures/planets/earthmap4k.jpg");
+            var earthMaterial = new THREE.MeshBasicMaterial();
+            earthMaterial.map = earthTexture;
+            return earthMaterial;
+        }
+        
+    In the createEarthMaterial function, we create MeshBasicMaterial object, a
+    material that doesn't change the way it looks according to light sources. Before we
+    can use an image as a texture, we first need to load it. We can do this by using the
+    THREE.ImageUtils.loadTexture function, which loads the image asynchronously.
+    The final step that we need to do is set the map property of the material to the texture
+    we just created.
+
+
 //////////////////////////////////////////////////////////////////////////////////////////////

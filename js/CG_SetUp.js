@@ -3,6 +3,19 @@
  * github: https://github.com/AlexisTercero55
  * email: alexistercero55@gmail.com
  */
+/** //# issue
+ * CGenv must be a class and needs to initialize 
+ * the scene components:
+ * - Scene
+ * - Camera
+ * - Renderer
+ * - setClearColor
+ * - setSize
+ * - shadowMapEnabled (optional)
+ * - addStatsObject (optional)
+ * - cameraControl (optional)
+ * - renderer.domElement to the DOM
+ */
 function CGenv()
 {
     // graphics space (math)
@@ -39,8 +52,8 @@ function CGenv()
     var gui = new dat.GUI();
     let speed = 0.09;
     gui.add(controlObject, 'rotationSpeed', -speed, speed);
-    gui.addColor(controlObject, 'color');
-    gui.add(controlObject, 'opacity', 0, 1);
+    // gui.addColor(controlObject, 'color');
+    // gui.add(controlObject, 'opacity', 0, 1);
  }
  
  /**
@@ -63,12 +76,12 @@ function render()
 {
     // update scene by controls info
     // ----- Scene1.js
-    renderLoop();
+    // renderLoop();
     // ----- Scene2.js
-    // scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
+    renderLoop();
 
     // ----------------------------------------------------------------------
-    cameraControl.update();// update camera contros
+    cameraControl.update();// update camera controls pp:45
     stats.update();//update statistic report
 
     // render using requestAnimationFame

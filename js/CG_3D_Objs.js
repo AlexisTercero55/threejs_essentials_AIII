@@ -12,8 +12,7 @@
  * - Each 3D object must have {name, geometry, material, mesh}.
  */
 
-/**
- * Clasa 3D Object
+/**Class 3D Object
  * @param {string} name
  * @param {THREE.Geometry} geometry
  * @param {THREE.Material} material
@@ -38,25 +37,44 @@ class Object3D
     }
 }
 
-/**
- * sphere function built a 3D sphere from THREE library
+/** sphere function
+ * built a 3D sphere from THREE library
  * and adds it to the scene
  * @param {number} r 
  * @param {number} ws 
  * @param {number} hs 
  * @param {THREE.materialObject} material 
  * @param {string} name 
+ * 
+ * //# ISSUE:
+ * THIS FUNCTION MUST BE A METHOD OF A CLASS CHILD OF THREE.OBJECT3D
+ * @returns {THREE.Mesh}
  */
 function sphere(r=1, ws=15, hs=15, material, name)
 {
     // create a sphere
     var sphereGeometry = new THREE.SphereGeometry(r, ws, hs);
-    //var sphereMaterial = new THREE.MeshNormalMaterial();
+    // var sphereMaterial = new THREE.MeshNormalMaterial();
     var sphereMesh = new THREE.Mesh(sphereGeometry, material);
     sphereMesh.name = name;
+    /** //# issue
+     * make this process to add 3d objects to the scene
+     * as an internal process of Scene class
+     * method: add
+     * @param {THREE.Object3D} object
+     * objects[object.name] = object;
+     * this.scene.add(objects[name]);
+     *  */ 
     scene.add(sphereMesh);
 }
 
+/** earth function
+ *  set up earth from sphere and clouds
+ * 
+ * //# ISSUE:
+ * THIS FUNCTION MUST BE A METHOD OF A CLASS CHILD OF THREE.OBJECT3D
+ * @returns {THREE.Mesh}
+ */
 function earth()
 {
     // create material texture from image
@@ -71,7 +89,7 @@ function clouds()
     //# inprogress
 }
 
-/**
+/** | applyFaceColors | function |
  * Applies coloring to each individual face and updates the geometry so
  * the materialIndex points to the correct face
  *
@@ -98,7 +116,7 @@ function applyFaceColors(geometry)
     return result;
 }
 
-/**
+/** Cube function
  * set up simple box mesh (geometry and material)
  * @returns {THREE.Mesh}
  */

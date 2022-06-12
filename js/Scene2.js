@@ -16,3 +16,8 @@ function Scene()
         this.rotationSpeed = 0.005;
     };
 }
+
+function renderLoop()
+{
+    scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
+}

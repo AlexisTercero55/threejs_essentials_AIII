@@ -10,6 +10,15 @@ function directionalLight()
     scene.add(directionalLight);
 }
 
+/** Ambient light
+ * 
+ */
+function ambientLight()
+{
+    var ambientLight = new THREE.AmbientLight(0x111111);
+    scene.add(ambientLight);
+}
+
 
 
 /**

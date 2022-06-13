@@ -151,4 +151,7 @@ ADDING DIRECTIONAL AND AMBIENT LIGHTING
                         rays run parallel to each other. The sun, for instance,
                         can be seen as an infinite source of light.
 
+The constructor for THREE.DirectionalLight takes two parameters. 
+The FIRST one is the color and the SECOND one is the intensity.
+
 //////////////////////////////////////////////////////////////////////////////////////////////

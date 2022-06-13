@@ -1,13 +1,20 @@
 /**
- * Earth
+ * Earth with clouds and realistic lighting.
+ */
+
+/** //# ISSUE: Scene must be a class and needs to initialize
+ * 
  */
 function Scene()
 {
     //light
     directionalLight();
+    ambientLight();
+    
     // drawings
     earth();
     clouds();
+
     // camera view
     camView([35,36,33]);
 

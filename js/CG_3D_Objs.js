@@ -78,7 +78,7 @@ function sphere(r=1, ws=15, hs=15, material, name)
 function earth()
 {
     // create material texture from image
-    let texture = 'textures/earthmap4k.jpg';
+    let texture = 'textures/earthmap4k.jpg'; //UWU IMG LOADER IS WORKING WELL
     let material = materialTexture(texture);
     // create a sphere
     sphere(15,60,60,material, 'earth');

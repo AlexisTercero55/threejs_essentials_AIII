@@ -1,3 +1,17 @@
+/** DIRECTIONAL LIGHT
+ * Add the directional light, 
+ * which represents the sun in our case. 
+ */
+function directionalLight()
+{
+    var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+    directionalLight.position = new THREE.Vector3(100, 10, -50);
+    directionalLight.name = 'directional';
+    scene.add(directionalLight);
+}
+
+
+
 /**
  * Set spotlight on the scene.
  */

@@ -133,5 +133,22 @@ USE IMAGES AS TEXTURE MATERIAL IN THREE.JS (BASIC PROCESS)
     The final step that we need to do is set the map property of the material to the texture
     we just created.
 
+ADDING DIRECTIONAL AND AMBIENT LIGHTING
+    Three.js offers a number of different types of light. The following table shows the
+    most important lights that are available:
+
+    NAME                DESCRIPTION
+    AmbientLight        A simple light whose color is added to the color of an
+                        object's material.
+
+    PointLight          A single point in space that emanates light evenly in all
+                        directions.
+
+    SpotLight           A light with a cone effect, for instance, a spot in the ceiling
+                        or a torch.
+
+    DirectionalLight    A light that acts like a very remote light source. All light
+                        rays run parallel to each other. The sun, for instance,
+                        can be seen as an infinite source of light.
 
 //////////////////////////////////////////////////////////////////////////////////////////////

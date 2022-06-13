@@ -3,6 +3,8 @@
  */
 function Scene()
 {
+    //light
+    directionalLight();
     // drawings
     earth();
     clouds();

@@ -11,6 +11,7 @@
  * - Renderer
  * - setClearColor
  * - setSize
+ * - lights
  * - shadowMapEnabled (optional)
  * - addStatsObject (optional)
  * - cameraControl (optional)

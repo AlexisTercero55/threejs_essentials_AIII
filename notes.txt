@@ -5,7 +5,7 @@ email: alexistercero55@gmail.com
 
 Refernce: "Three.js Essentials" Jos Dirksen
 ISBN: 978-1-78398-086-4
-Current page: 42
+Current page: 54
 
 Conventions:
 
@@ -153,5 +153,21 @@ ADDING DIRECTIONAL AND AMBIENT LIGHTING
 
 The constructor for THREE.DirectionalLight takes two parameters. 
 The FIRST one is the color and the SECOND one is the intensity.
+
+BACKGROUND SET UP 
+pp: 50 - 52
+
+A very interesting feature of Three.js: the THREE.
+OrthographicCamera object.
+
+EffectComposer
+
+As we're not interested in just the background but want to combine the rendering of
+the earth with the rendered background, we can't use the renderer we've used so far.
+We need to use an object called EffectComposer. With an EffectComposer object,
+we can define various render passes, which are combined into a single image shown
+in the browser.
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////

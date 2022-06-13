@@ -39,6 +39,8 @@ function CGenv()
     // add controls
     cameraControl = new THREE.OrbitControls(camera);
 
+    backgroundSetUp();
+
     // add graphics to the web page (HTML)
     //# renderer.domElement should be added to any HTMl container like <div>
     document.body.appendChild(renderer.domElement);
@@ -85,8 +87,21 @@ function render()
     cameraControl.update();// update camera controls pp:45
     stats.update();//update statistic report
 
+    /**
+     * when the scene has baground from the background plane,
+     * use
+     */
+    // and render the scene, renderer shouldn't autoclear, we let the composer steps do that themselves
+    // rendering is now done through the composer, which executes the render steps
+    renderer.autoClear = false;
+    composer.render();
+    /**
+     * instead of renderer.render(scene, camera);
+     */
     // render using requestAnimationFame
-    renderer.render(scene, camera); // renderer is a global variable
+    // renderer.render(scene, camera); // renderer is a global variable
+
+
     // set up a render loop.
     requestAnimationFrame(render);
 }

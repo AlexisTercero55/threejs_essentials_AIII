@@ -168,6 +168,8 @@ function plane1()
     scene.add(plane);
 }
 
+
+
 /**
  * Add small spheres on each of the vertices of the supplied mesh.
  * @param {THREE.Mesh} mesh

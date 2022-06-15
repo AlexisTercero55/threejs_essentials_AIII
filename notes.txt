@@ -185,6 +185,24 @@ following code:
         ...
     }
 
+USING A SPECULAR MAP TO DEFINE THE REFLECTIVITY OF AN AREA:
 
+pp #56 - 
+
+Here, you can see that the continents are black, so they won't reflect the directional
+light we created, and the oceans are white. To use this image to improve our globe,
+we set this image as a texture to the specularMap property of the material we're
+using. This is described in the following code:
+
+    function createEarthMaterial() {
+        ...
+        var specularMap = THREE.ImageUtils.loadTexture(
+        "../assets/textures/planets/earthspec4k.jpg");
+        earthMaterial.specularMap = specularMap;
+        
+        // Finally, we can define the color of the reflection using the specular property.
+        earthMaterial.specular = new THREE.Color(0x262626);
+        ...
+    }
 
 //////////////////////////////////////////////////////////////////////////////////////////////

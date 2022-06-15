@@ -39,11 +39,24 @@ function createEarthMaterial()
     let texture = 'textures/earthmap4k.jpg'; //UWU IMG LOADER IS WORKING WELL
     let earthMaterial = materialTexture(texture);
 
+    // specular map for lighting management pp 56
+    texture = "textures/earthspec4k.jpg"
+    let specularMap = THREE.ImageUtils.loadTexture(texture);
+    earthMaterial.specularMap = specularMap;
+    earthMaterial.specular = new THREE.Color(0x262626);
+
+    // normal map for relief management
     texture =  "textures/earth_normalmap_flat4k.jpg";
-    var normalMap = THREE.ImageUtils.loadTexture(texture);
+    let normalMap = THREE.ImageUtils.loadTexture(texture);
 
     earthMaterial.normalMap = normalMap;
-    earthMaterial.normalScale = new THREE.Vector2(0.5, 0.7);
+    /** //# Issue: add this to notes as material.properties.anyname = value;
+     * pp #55
+     * You can play around with how
+     * large the effect of this normal map is by using the normalScale property, where the
+     * first property defines scaling along the x axis and the second one along the y axis.
+     */
+    // earthMaterial.normalScale = new THREE.Vector2(0.5, 0.7);
 
     return earthMaterial;   // return the material texture with normal map
 }

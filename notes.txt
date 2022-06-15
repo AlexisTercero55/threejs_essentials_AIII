@@ -169,5 +169,22 @@ we can define various render passes, which are combined into a single image show
 in the browser.
 
 
+USING A NORMAL MAP TO SIMULATE ELEVATIONS
+
+Using a normal map works in the same way as using a standard texture. Consider the
+following code:
+
+    function createEarthMaterial() 
+    {
+        ...
+        var normalMap = THREE.ImageUtils.loadTexture(
+        "../assets/textures/planets/earth_normalmap_flat4k.jpg");
+        ...
+        earthMaterial.normalMap = normalMap;
+        earthMaterial.normalScale = new THREE.Vector2(0.5, 0.7);
+        ...
+    }
+
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////

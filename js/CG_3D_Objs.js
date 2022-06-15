@@ -78,8 +78,7 @@ function sphere(r=1, ws=15, hs=15, material, name)
 function earth()
 {
     // create material texture from image
-    let texture = 'textures/earthmap4k.jpg'; //UWU IMG LOADER IS WORKING WELL
-    let material = materialTexture(texture);
+    let material = createEarthMaterial();
     // create a sphere
     sphere(15,60,60,material, 'earth');
 }
@@ -170,7 +169,7 @@ function plane1()
 
 
 
-/**
+/** Add vertices to a geometry
  * Add small spheres on each of the vertices of the supplied mesh.
  * @param {THREE.Mesh} mesh
  */

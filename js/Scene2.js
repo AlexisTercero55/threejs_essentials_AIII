@@ -29,4 +29,5 @@ function Scene()
 function renderLoop()
 {
     scene.getObjectByName('earth').rotation.y+=control.rotationSpeed;
+    scene.getObjectByName('clouds').rotation.y+= 0.2*control.rotationSpeed;
 }

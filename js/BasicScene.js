@@ -67,12 +67,12 @@ function backgroundSetUp()
 
     /**pp:52
      * In this example, we first define two THREE.RenderPass objects. With a Three.
-RenderPass object, you can render a scene with a specific camera, but the result
-isn't rendered directly to the screen but kept internally for further processing. The
-normal behavior of a Three.RenderPass object is to clear the current output from
-the renderer before rendering. This is why we need to set the renderPass.clear
-property on the second THREE.RenderPass object. If we don't do this, we'll only
-see the rotating earth and not the background.
+        RenderPass object, you can render a scene with a specific camera, but the result
+        isn't rendered directly to the screen but kept internally for further processing. The
+        normal behavior of a Three.RenderPass object is to clear the current output from
+        the renderer before rendering. This is why we need to set the renderPass.clear
+        property on the second THREE.RenderPass object. If we don't do this, we'll only
+        see the rotating earth and not the background.
      */
 }
 

@@ -17,7 +17,7 @@ var sceneBG;
 var composer;
 
 
-/**
+/** METHOD | IMPLEMENTED IN CGenv class
  * SET POSITION AND ORIENTATION OF THE CAMERA.
  * @param {array} xyz - [x,y,z]
  * 
@@ -35,6 +35,7 @@ function camView(xyz = [20,20,20])
     camera.lookAt(scene.position);
 }
 
+// METHOD | IMPLEMENTED IN CGenv class
 function BGPlane()
 {
     //# why depthTest: false is needed?
@@ -47,6 +48,7 @@ function BGPlane()
     sceneBG.add(bgPlane);
 }
 
+// METHOD | IMPLEMENTED IN CGenv class
 function backgroundSetUp()
 {
     camBG();
@@ -80,6 +82,7 @@ function backgroundSetUp()
 
 /**
  * ------------ Main function -----------------------
+ * 
  * this function is executed when the page is loaded.
  */
 function main() 

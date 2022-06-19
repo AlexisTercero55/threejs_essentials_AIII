@@ -35,7 +35,7 @@ function CGenv()
 }
 
 /**
- * Make gui contros using dat.gui
+ * Make gui controls using dat.gui
  * @param {object} controlObject 
  */
  function addControlGui(controlObject) 

@@ -3,12 +3,13 @@
  * email: alexistercero55@gmail.com
  */
 
+// #issue:* properties of the scene [background, lights, GUI, updaters, ...]
 
-/** CLASS | CG3Denv
+/** CLASS | CGenv
  * CGenv is the pipeline for the 3D scene.
  * 
  */
-class CG3Denv 
+class CGenv
 {
     // properties of the scene class
     scene; // graphics space (math)
@@ -24,7 +25,10 @@ class CG3Denv
     // methods of the scene class
 
     /** constructor
-     * @param {bool} shadows enable shadows rendering
+     * 
+     * Sets up the scene, camera, renderer, stats, and background.
+     * 
+     * @param {bool} shadows Enable shadows rendering
      */
     constructor(shadows = false) 
     {
@@ -36,6 +40,7 @@ class CG3Denv
                             0.1, 
                             1000
                             );
+        this.camView();
 
         this.renderer = new THREE.WebGLRenderer();
         this.renderer.setClearColor(0x000000, 1.0);
@@ -50,12 +55,28 @@ class CG3Denv
         // (optional)
         this.cameraControl = new THREE.OrbitControls(camera);
 
-        this.#backgroundSetUp();//*# issue
+        this.#backgroundSetUp();
 
         // add graphics to the web page (HTML)
         //# renderer.domElement should be added to any HTMl container like <div>
         document.body.appendChild(this.renderer.domElement);
     }
+
+    /**
+     * camView
+     * 
+     * SET POSITION AND ORIENTATION OF THE CAMERA.
+     * @param {array} xyz [x,y,z]
+     */
+    camView(xyz = [20,20,20])
+    {
+        // set up the camera position and view
+        this.camera.position.x = xyz[0];
+        this.camera.position.y = xyz[1];
+        this.camera.position.z = xyz[2];
+        this.camera.lookAt(this.scene.position);
+    }
+
 
     /**
      * BGPlane
@@ -123,7 +144,6 @@ class CG3Denv
         this.cameraBG.position.z = 50;
     }
 
-
     /** 
      * Stats of rendering 
      * 
@@ -138,5 +158,56 @@ class CG3Denv
         this.stats.domElement.style.left = '0px';
         this.stats.domElement.style.top = '0px';
         document.body.appendChild(this.stats.domElement );
+    }
+}
+
+/**
+ * CLASS | Scene
+ * 
+ * An Scene uses the CGenv class to configure
+ * some of the scene settings like:
+ * - gui controls
+ * - building the scene elements
+ * - rendering the scene
+ * - updating the scene
+ * - animations
+ * - interaction with the user
+ * - change the state of the scene
+ */
+class Scene extends CGenv
+{
+    // properties of the scene class
+    gui;// binding for real time interaction (optional)
+
+    // methods of the scene class
+    constructor()
+    {
+        super();
+        this.#addControlGui();
+    }
+
+    /**
+     * Add GUI | Controls
+     * 
+     * Create some bindings for real time interaction
+     * that changes the internal state of the scene and
+     * configures each binding as a GUI control in the web page.
+     */
+
+    #addControlGui()
+    {
+        this.gui = new dat.GUI();
+        let controlObject= new function() 
+        {
+            // edit control instance @CG_SetUp.js
+            this.rotationSpeed = 0.005;
+        };
+
+
+        // control implementation
+        let speed = 0.09;
+        gui.add(controlObject, 'rotationSpeed', -speed, speed);
+        // gui.addColor(controlObject, 'color');
+        // gui.add(controlObject, 'opacity', 0, 1);
     }
 }

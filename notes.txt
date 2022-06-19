@@ -205,4 +205,11 @@ using. This is described in the following code:
         ...
     }
 
+    Scene.add ( object : Object3D, ... ) : this
+
+    Adds object as child of this object. An arbitrary number 
+    of objects may be added. Any current parent on an object 
+    passed in here will be removed, since an object can have 
+    at most one parent.
+
 //////////////////////////////////////////////////////////////////////////////////////////////

@@ -180,10 +180,32 @@ class Scene extends CGenv
     gui;// binding for real time interaction (optional)
 
     // methods of the scene class
-    constructor()
+    /**
+     * @param {bool} shadows Enable shadows rendering
+     */
+    constructor(shadows = false)
     {
-        super();
+        super(shadows);
+        // add scene elements
+        // this.#addSceneElements(); //#issue: this method is not defined
+
+        this.camView();
         this.#addControlGui();
+
+    }
+
+
+    /**
+     * #addSceneElements()
+     * 
+     * this method define and add 3D objs
+     * that will be rendered in the scene
+     * at the first time.
+     */
+    #addSceneElements()
+    {
+        //write here some initial scene
+        pass;
     }
 
     /**
@@ -199,14 +221,15 @@ class Scene extends CGenv
         this.gui = new dat.GUI();
         let controlObject= new function() 
         {
-            // edit control instance @CG_SetUp.js
+            // set up controls bindings
             this.rotationSpeed = 0.005;
         };
 
 
-        // control implementation
+        // control type implementation
         let speed = 0.09;
         gui.add(controlObject, 'rotationSpeed', -speed, speed);
+        
         // gui.addColor(controlObject, 'color');
         // gui.add(controlObject, 'opacity', 0, 1);
     }

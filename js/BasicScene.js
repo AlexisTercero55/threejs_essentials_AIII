@@ -2,6 +2,11 @@
  * Alexis Tercero 
  * github: https://github.com/AlexisTercero55
  * email: alexistercero55@gmail.com
+ * 
+ * THIS IS AN INTERFACE
+ * 
+ * An script that launch the website's process 
+ * (events, handlers, runtime)
  */
 
 // global variables
@@ -36,47 +41,47 @@ function camView(xyz = [20,20,20])
 }
 
 // METHOD | IMPLEMENTED IN CGenv class
-function BGPlane()
-{
-    //# why depthTest: false is needed?
-    var materialColor = new THREE.MeshBasicMaterial({ map:THREE.ImageUtils.loadTexture("textures/starry_background.jpg"),depthTest: false});
+    function BGPlane()
+    {
+        //# why depthTest: false is needed?
+        var materialColor = new THREE.MeshBasicMaterial({ map:THREE.ImageUtils.loadTexture("textures/starry_background.jpg"),depthTest: false});
 
-    var bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), materialColor);
-    bgPlane.position.z = -100;
-    bgPlane.scale.set(window.innerWidth * 2, window.innerHeight * 2, 1);
+        var bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), materialColor);
+        bgPlane.position.z = -100;
+        bgPlane.scale.set(window.innerWidth * 2, window.innerHeight * 2, 1);
 
-    sceneBG.add(bgPlane);
-}
+        sceneBG.add(bgPlane);
+    }
 
 // METHOD | IMPLEMENTED IN CGenv class
-function backgroundSetUp()
-{
-    camBG();
-    sceneBG = new THREE.Scene();
-    BGPlane();
+    function backgroundSetUp()
+    {
+        camBG();
+        sceneBG = new THREE.Scene();
+        BGPlane();
 
-    // setup the passes
-    var bgPass = new THREE.RenderPass(sceneBG, cameraBG);
-    var renderPass = new THREE.RenderPass(scene, camera);
-    renderPass.clear = false;
-    var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
-    effectCopy.renderToScreen = true;
-    // add these passes to the composer
-    composer = new THREE.EffectComposer(renderer);
-    composer.addPass(bgPass);
-    composer.addPass(renderPass);
-    composer.addPass(effectCopy);
+        // setup the passes
+        var bgPass = new THREE.RenderPass(sceneBG, cameraBG);
+        var renderPass = new THREE.RenderPass(scene, camera);
+        renderPass.clear = false;
+        var effectCopy = new THREE.ShaderPass(THREE.CopyShader);
+        effectCopy.renderToScreen = true;
+        // add these passes to the composer
+        composer = new THREE.EffectComposer(renderer);
+        composer.addPass(bgPass);
+        composer.addPass(renderPass);
+        composer.addPass(effectCopy);
 
-    /**pp:52
-     * In this example, we first define two THREE.RenderPass objects. With a Three.
-        RenderPass object, you can render a scene with a specific camera, but the result
-        isn't rendered directly to the screen but kept internally for further processing. The
-        normal behavior of a Three.RenderPass object is to clear the current output from
-        the renderer before rendering. This is why we need to set the renderPass.clear
-        property on the second THREE.RenderPass object. If we don't do this, we'll only
-        see the rotating earth and not the background.
-     */
-}
+        /**pp:52
+         * In this example, we first define two THREE.RenderPass objects. With a Three.
+            RenderPass object, you can render a scene with a specific camera, but the result
+            isn't rendered directly to the screen but kept internally for further processing. The
+            normal behavior of a Three.RenderPass object is to clear the current output from
+            the renderer before rendering. This is why we need to set the renderPass.clear
+            property on the second THREE.RenderPass object. If we don't do this, we'll only
+            see the rotating earth and not the background.
+        */
+    }
 
 //# functions above need to be move to another CG_desc.js file
 
@@ -101,6 +106,7 @@ function main()
 window.onload = main;
 
 /**
+ * It would be a method from a Scene class
  * Function handles the resize event. 
  * This make sure the CAMERA AND THE RENDERER
  * are UPDATED at the CORRECT MOMENT.

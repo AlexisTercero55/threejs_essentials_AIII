@@ -12,6 +12,20 @@ Conventions:
     //# any iusses notes
 
 //////////////////////////////////////////////////////////////////////////////////////////////
+REPORTS
+
+WORKFLOW
+
+    (HTML,CSS) -> JS -> ((INTERFACES,SCENES), MYWORK) -> libs
+
+MYWORK
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////////////////////////////////
 CHAPTER 1:
 
 why requestAnimationFrame()?
@@ -32,7 +46,8 @@ show them. This is described in the following code:
     function addStatsObject() 
     {
         stats = new Stats();
-        stats.setMode(0);   // 0: fps, 1: ms                      
+        stats.setMode(0);   // 0: fps, 1: ms    
+        // position stats report                  
         stats.domElement.style.position = 'absolute';   
         stats.domElement.style.left = '0px';            
         stats.domElement.style.top = '0px';             

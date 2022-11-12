@@ -104,6 +104,8 @@ function main()
     render(); // render and animations
 }
 window.onload = main;
+// for OOP aproach we need 
+//  window.onload = GC_INTERFACE.render() (animate)
 
 /**
  * It would be a method from a Scene class
@@ -119,3 +121,5 @@ function handleResize()
 }
 // calls the handleResize function when the window is resized
 window.addEventListener('resize', handleResize, false);
+// for OOP aproach we need 
+//  window.addEventListener('resize', GC_INTERFACE.handleResize, false);

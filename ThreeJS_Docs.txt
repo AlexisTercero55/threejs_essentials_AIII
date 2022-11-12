@@ -1,53 +1,193 @@
 ///////////////////////////////////////////////////
 Object3D →
+///////////////////////////////////////////////////
 
-Scene extends Object3D
-Scenes allow you to set up what and where is to be 
-rendered by three.js. This is where you place objects, 
-lights and cameras.
+///////////////////////////////////////////////////
+Scene →
+    Scene extends Object3D
+    Scenes allow you to set up what and where is to be 
+    rendered by three.js. This is where you place objects, 
+    lights and cameras.
+
+    Constructor
+    Scene()
+    Create a new scene object.
+
+    Properties-----------------------------------------
+    .autoUpdate : Boolean
+    Default is true. If set, then the renderer checks 
+    every frame if the scene and its objects needs matrix 
+    updates. When it isn't, then you have to maintain all 
+    matrices in the scene yourself.
+
+    .background : Object
+    If not null, sets the background used when rendering the 
+    scene, and is always rendered first. Can be set to a Color 
+    which sets the clear color, a Texture covering the canvas, 
+    a cubemap as a CubeTexture or an equirectangular as a Texture. 
+    Default is null.
+
+    .environment : Texture
+    If not null, this texture is set as the environment map for 
+    all physical materials in the scene. However, it's not possible 
+    to overwrite an existing texture assigned to 
+    MeshStandardMaterial.envMap. Default is null.
+
+    .fog : Fog
+    A fog instance defining the type of fog that affects everything 
+    rendered in the scene. Default is null.
+
+    .isScene : Boolean
+    Read-only flag to check if a given object is of type Scene.
+
+    .overrideMaterial : Material
+    If not null, it will force everything in the scene to be rendered 
+    with that material. Default is null.
+
+    Methods
+    .toJSON ( meta : Object ) : Object
+    meta -- object containing metadata such as textures or images for the scene.
+    Convert the scene to three.js JSON Object/Scene format.
+
+    Source
+    src/scenes/Scene.js
+
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
+Object3D → Camera →
+PerspectiveCamera
+Camera that uses perspective projection.
+
+This projection mode is designed to mimic the way the human eye sees. It is the most common projection mode used for rendering a 3D scene.
+
+Code Example
+const camera = new THREE.PerspectiveCamera( 45, width / height, 1, 1000 );
+scene.add( camera );
+Examples
+animation / skinning / blending
+animation / skinning / morph
+effects / stereo
+interactive / cubes
+loader / collada / skinning
 
 Constructor
-Scene()
-Create a new scene object.
+PerspectiveCamera( fov : Number, aspect : Number, near : Number, far : Number )
+fov — Camera frustum vertical field of view.
+aspect — Camera frustum aspect ratio.
+near — Camera frustum near plane.
+far — Camera frustum far plane.
 
-Properties-----------------------------------------
-.autoUpdate : Boolean
-Default is true. If set, then the renderer checks 
-every frame if the scene and its objects needs matrix 
-updates. When it isn't, then you have to maintain all 
-matrices in the scene yourself.
+Together these define the camera's viewing frustum.
 
-.background : Object
-If not null, sets the background used when rendering the 
-scene, and is always rendered first. Can be set to a Color 
-which sets the clear color, a Texture covering the canvas, 
-a cubemap as a CubeTexture or an equirectangular as a Texture. 
-Default is null.
+Properties
+See the base Camera class for common properties.
+Note that after making changes to most of these properties you will have to call .updateProjectionMatrix for the changes to take effect.
 
-.environment : Texture
-If not null, this texture is set as the environment map for 
-all physical materials in the scene. However, it's not possible 
-to overwrite an existing texture assigned to 
-MeshStandardMaterial.envMap. Default is null.
+.aspect : Float
+Camera frustum aspect ratio, usually the canvas width / canvas height. Default is 1 (square canvas).
 
-.fog : Fog
-A fog instance defining the type of fog that affects everything 
-rendered in the scene. Default is null.
+.far : Float
+Camera frustum far plane. Default is 2000.
 
-.isScene : Boolean
-Read-only flag to check if a given object is of type Scene.
+Must be greater than the current value of near plane.
 
-.overrideMaterial : Material
-If not null, it will force everything in the scene to be rendered 
-with that material. Default is null.
+.filmGauge : Float
+Film size used for the larger axis. Default is 35 (millimeters). This parameter does not influence the projection matrix unless .filmOffset is set to a nonzero value.
+
+.filmOffset : Float
+Horizontal off-center offset in the same unit as .filmGauge. Default is 0.
+
+.focus : Float
+Object distance used for stereoscopy and depth-of-field effects. This parameter does not influence the projection matrix unless a StereoCamera is being used. Default is 10.
+
+.fov : Float
+Camera frustum vertical field of view, from bottom to top of view, in degrees. Default is 50.
+
+.isPerspectiveCamera : Boolean
+Read-only flag to check if a given object is of type PerspectiveCamera.
+
+.near : Float
+Camera frustum near plane. Default is 0.1.
+
+The valid range is greater than 0 and less than the current value of the far plane. Note that, unlike for the OrthographicCamera, 0 is not a valid value for a PerspectiveCamera's near plane.
+
+.view : Object
+Frustum window specification or null. This is set using the .setViewOffset method and cleared using .clearViewOffset.
+
+.zoom : number
+Gets or sets the zoom factor of the camera. Default is 1.
 
 Methods
-.toJSON ( meta : Object ) : Object
-meta -- object containing metadata such as textures or images for the scene.
-Convert the scene to three.js JSON Object/Scene format.
+See the base Camera class for common methods.
+
+.clearViewOffset () : undefined
+Removes any offset set by the .setViewOffset method.
+
+.getEffectiveFOV () : Float
+Returns the current vertical field of view angle in degrees considering .zoom.
+
+.getFilmHeight () : Float
+Returns the height of the image on the film. If .aspect is less than or equal to one (portrait format), the result equals .filmGauge.
+
+.getFilmWidth () : Float
+Returns the width of the image on the film. If .aspect is greater than or equal to one (landscape format), the result equals .filmGauge.
+
+.getFocalLength () : Float
+Returns the focal length of the current .fov in respect to .filmGauge.
+
+.setFocalLength ( focalLength : Float ) : undefined
+Sets the FOV by focal length in respect to the current .filmGauge.
+
+By default, the focal length is specified for a 35mm (full frame) camera.
+
+.setViewOffset ( fullWidth : Float, fullHeight : Float, x : Float, y : Float, width : Float, height : Float ) : undefined
+fullWidth — full width of multiview setup
+fullHeight — full height of multiview setup
+x — horizontal offset of subcamera
+y — vertical offset of subcamera
+width — width of subcamera
+height — height of subcamera
+
+Sets an offset in a larger frustum. This is useful for multi-window or multi-monitor/multi-machine setups.
+
+For example, if you have 3x2 monitors and each monitor is 1920x1080 and the monitors are in grid like this:
++---+---+---+
+| A | B | C |
++---+---+---+
+| D | E | F |
++---+---+---+
+		
+then for each monitor you would call it like this:
+const w = 1920;
+const h = 1080;
+const fullWidth = w * 3;
+const fullHeight = h * 2;
+
+// A
+camera.setViewOffset( fullWidth, fullHeight, w * 0, h * 0, w, h );
+// B
+camera.setViewOffset( fullWidth, fullHeight, w * 1, h * 0, w, h );
+// C
+camera.setViewOffset( fullWidth, fullHeight, w * 2, h * 0, w, h );
+// D
+camera.setViewOffset( fullWidth, fullHeight, w * 0, h * 1, w, h );
+// E
+camera.setViewOffset( fullWidth, fullHeight, w * 1, h * 1, w, h );
+// F
+camera.setViewOffset( fullWidth, fullHeight, w * 2, h * 1, w, h );Note there is no reason monitors have to be the same size or in a grid.
+.updateProjectionMatrix () : undefined
+Updates the camera projection matrix. Must be called after any change of parameters.
+
+.toJSON (meta : Object) : Object
+meta -- object containing metadata such as textures or images in objects' descendants.
+Convert the camera to three.js JSON Object/Scene format.
 
 Source
-src/scenes/Scene.js
+src/cameras/PerspectiveCamera.js
+///////////////////////////////////////////////////
+
+///////////////////////////////////////////////////
 
 ///////////////////////////////////////////////////
 

@@ -91,5 +91,10 @@ function render()
 
 
     // set up a render loop.
+    /**
+     * Note: Your callback routine must itself call requestAnimationFrame() 
+     * again if you want to animate another frame at the next repaint. 
+     * requestAnimationFrame() is 1 shot.
+     */
     requestAnimationFrame(render);
 }

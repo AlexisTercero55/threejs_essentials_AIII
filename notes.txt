@@ -11,14 +11,49 @@ Conventions:
 
     //# any iusses notes
 
+        //# (1) NEED CONSTANT INPROVE
+
 //////////////////////////////////////////////////////////////////////////////////////////////
 REPORTS
 
 WORKFLOW
 
+    Below is prsented tha way I´m coding my animations.
+
     (HTML,CSS) -> JS -> ((INTERFACES,SCENES), MYWORK) -> libs
 
-MYWORK
+(HTML,CSS):
+
+    Defines the web page where render will be showed. It also imports
+    files that contain the THREE JS app (animations and renders).
+
+JS: Simply JS files.
+
+INTERFACES:
+
+    Interfaces are defined by different configurations of CG pipelines element:
+
+    * Perspective
+    * camera (s)
+    * background (it may be change latter)
+    * -transformations
+    * render engine
+    * metrics or menus
+    * animation loop
+    * etc.  //# (1) need constant inprove
+
+    together they build a class that provides the way to vizualize the render and animations.
+
+SCENES:
+
+    Scripts that defines several render and animations instructions.
+    that will be provide to the INTERFACES class (animation loop) 
+    in order to be render, SCENES will contain instructions to define:
+
+    * 3D objects and its shaders.
+    * transformations and its time to be completed.
+
+MYWORK: Just a set of Interfaces and Scenes running in the web page.
 
 
 
@@ -28,40 +63,53 @@ MYWORK
 //////////////////////////////////////////////////////////////////////////////////////////////
 CHAPTER 1:
 
-why requestAnimationFrame()?
+window.requestAnimationFrame()
 
-With the requestAnimationFrame function, we tell
-the browser to determine when it thinks it is best to call the supplied function (the
-render function in this case). This way, we can offload the graphical rendering of the
-scene from the normal JavaScript thread; this provides a much smoother experience
-and better performance.
+    Used as animation loop
+    why requestAnimationFrame()? (this function is asynchronously executed)
+
+    With the requestAnimationFrame function, we tell
+    the browser to determine when it thinks it is best to call the supplied function (the
+    render function in this case). This way, we can offload the graphical rendering of the
+    scene from the normal JavaScript thread; this provides a much smoother experience
+    and better performance.
+
+    The method tells the browser that you wish to perform an animation and requests that 
+    THE BROWSER CALLS A SPECIFIED FUNCTION TO UPDATE AN ANIMATION BEFORE THE NEXT REPAINT. 
+    The method takes a CALLBACK as an argument to be invoked before the repaint.
+
+    Note: Your callback routine must itself call requestAnimationFrame() again if you want to
+    animate another frame at the next repaint. requestAnimationFrame() is 1 shot.
+
+    * callbacks is usually 60 times per second
+    * requestAnimationFrame(callback)
+    * https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
 
 HOW WORKS dat.gui?  <----------------//#
 
 HOW WORKS stats.js?
 
-we need to configure what KIND OF STATISTICS WE WANT to show and where to
-show them. This is described in the following code:
+    we need to configure what KIND OF STATISTICS WE WANT to show and
+    where to show them. This is described in the following code:
 
-    function addStatsObject() 
-    {
-        stats = new Stats();
-        stats.setMode(0);   // 0: fps, 1: ms    
-        // position stats report                  
-        stats.domElement.style.position = 'absolute';   
-        stats.domElement.style.left = '0px';            
-        stats.domElement.style.top = '0px';             
-        document.body.appendChild( stats.domElement );  
-    }                                                   
-                                                        
-Stats.js supports two modes:
+        function addStatsObject() 
+        {
+            stats = new Stats();
+            stats.setMode(0);   // 0: fps, 1: ms    
+            // position stats report                  
+            stats.domElement.style.position = 'absolute';   
+            stats.domElement.style.left = '0px';            
+            stats.domElement.style.top = '0px';             
+            document.body.appendChild( stats.domElement );  
+        }                                                   
+                                                            
+    Stats.js supports two modes:
 
-    Mode 0, which we will use here, 
-    shows the frames per second (FPS). 
-    
-    Mode to 1, we will see the number of 
-    milliseconds needed to render the frame.
-
+        Mode 0, which we will use here, 
+        shows the frames per second (FPS). 
+        
+        Mode to 1, we will see the number of 
+        milliseconds needed to render the frame.
 
 Sphere geometry constructor argumets:
 
@@ -71,7 +119,7 @@ Sphere geometry constructor argumets:
     • The number of width segments
     • The number of height segments
 
-THREE.MeshNormalMaterial(). 
+THREE.MeshNormalMaterial()
     With this material, the color of a mesh isn't 
     determined by lighting, but is determined by
     its normal vector, or in other words, by the 

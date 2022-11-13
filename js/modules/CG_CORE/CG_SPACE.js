@@ -8,7 +8,7 @@
 
 import {THREE} from './CG_THREE.js';
 import {CG_CAM} from './CG_CAM.js';
-import {CG_RENDERER} from './CG_RENDER.js';
+import {CG_RENDERER} from './CG_RENDERER.js';
 
 /**
  * CG_SPACE (graphics space)
@@ -40,9 +40,12 @@ class CG_SPACE extends THREE.Scene
         this.renderer = new CG_RENDERER();
 
         console.log('CG_SPACE instantiated');
+        // this.rendering();
     }
 
     // Methods
+
+    // getter for this.renderer.autoClear propertie
     
     // to add 3D Objects to the scene just using this.add(object) method    
 
@@ -59,16 +62,26 @@ class CG_SPACE extends THREE.Scene
      */
     _render_CG_SPACE(RW = true)
     {
-        this.camera.controls.update()
+        // this.camera.controls.update()
         if(RW)//Standard render
         {
             this.renderer.render(this, this.camera);
         }
     }
 
+    rendering()
+    {
+        this._render_CG_SPACE();
+        requestAnimationFrame(this.rendering);
+    }
+
 
 }
 
 // let a = new CG_SPACE();
+
+// window.onload = () => {
+//     let a = new CG_SPACE();
+// }
 
 export {CG_SPACE};

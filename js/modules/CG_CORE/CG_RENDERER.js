@@ -36,6 +36,11 @@ class CG_RENDERER extends THREE.WebGLRenderer
         
         console.log('CG_REDNERER instantiated');
     }
+
+    set AutoClear(value)
+    {
+        this.autoClear = value;
+    }
 }
 
 export {CG_RENDERER};

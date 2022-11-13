@@ -23,12 +23,14 @@ function CGenv()
     renderer.shadowMapEnabled = true;
 
     // add statistic report of frame rate
-    addStatsObject();
+    addStatsObject();//# TBI: to be implemented on CG_CORE.CG_SPACE
+    
     // add orbit controls for camera
     cameraControl = new THREE.OrbitControls(camera);
 
-    backgroundSetUp();
+    backgroundSetUp();// optional for each scene
 
+    //# BE Aware on when you appendChild to html
     // add graphics to the web page (HTML)
     //# renderer.domElement should be added to any HTMl container like <div>
     document.body.appendChild(renderer.domElement);
@@ -63,33 +65,40 @@ function CGenv()
  /**
   * Update and render loop
   */
-function render() 
+function render() //- For each CG_SCENE.rendering() method
 {
     // update scene by controls info
     // ----- Scene1.js
     // renderLoop();
     // ----- Scene2.js
-    renderLoop();
+    renderLoop();//- For each CG_SCENE.animationLoop()
 
     // ----------------------------------------------------------------------
+    // Below code is placed on CG_SPACE._render_CG_SPACE() method
     cameraControl.update();// update camera controls pp:45
+    
     stats.update();//update statistic report
 
+    //# SWITCH CASE 2
     /**
-     * when the scene has baground from the background plane,
-     * use
+     * When the scene has baground from the background plane, use
+     * 
+     *  composer.render()
+     * 
+     * and render the scene, renderer shouldn't autoclear, 
+     * we let the composer steps do that themselves
+     * rendering is now done through the composer, which executes the render steps
      */
-    // and render the scene, renderer shouldn't autoclear, we let the composer steps do that themselves
-    // rendering is now done through the composer, which executes the render steps
     renderer.autoClear = false;
     composer.render();
     /**
      * instead of renderer.render(scene, camera);
      */
-    // render using requestAnimationFame
+    // Below code is placed on CG_SPACE._render_CG_SPACE() method
     // renderer.render(scene, camera); // renderer is a global variable
-
-
+    
+    
+    // render using requestAnimationFame
     // set up a render loop.
     /**
      * Note: Your callback routine must itself call requestAnimationFrame() 

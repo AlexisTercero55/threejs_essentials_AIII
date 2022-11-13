@@ -1,5 +1,9 @@
 /** DONE
  * Summary of ch 1.
+ * 
+ * - 3DObjects
+ * - Lights
+ * - controlObjects
  */
 function Scene()
 {
